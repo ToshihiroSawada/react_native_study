@@ -43,8 +43,10 @@ export default function App() {
           <Text style={styles.memoDate}>2019/12/19</Text>
         </View>
       </View>
-      <View>
-        <Text>+</Text>
+      <View style={styles.memoAddButton}>
+        <Text style={styles.memoAddAddButtonTitle}>
+        +
+        </Text>
       </View>
     </View>
   );
@@ -71,15 +73,17 @@ const styles = StyleSheet.create({
     backgroundColor: '#265366',
     justifyContent: 'center', //上下の位置設定（センター）
     alignItems: 'center', //左右方向の位置設定（センター）
-    shadowColor: '#000',
-    //影をつける設定のはずだが、IOSようなので、Andoroid用を探して設定する必要が有る。
-    shadowOffset: { width: 0, height: 0 },
-    shadowOpacity: 0.5,
-    shadowRadius: 3,
-    //zIndexはappbarの方が、memoListより上の階層に有ることを宣言するためのもの
+    shadowColor: '#ccc',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowRadius: 0,
+    shadowOpacity: 1,
+    elevation: 500,
     zIndex: 10,
   },
-  //appbarの色付け
+  //appbarのフォントのスタイリング
   appbarTitle: {
     color: '#fff',
     fontSize: 18,
@@ -91,8 +95,8 @@ const styles = StyleSheet.create({
   },
   //memoListItemに影をつける
   memoListItem: {
+    padding: 15,
     backgroundColor: '#fff', //memoListItemの背景色を設定
-    padding: 16,
     borderBottomWidth: 1,
     borderBottomColor: '#ddd',
   },
@@ -105,5 +109,23 @@ const styles = StyleSheet.create({
   memoDate: {
     fontSize: 12,
     color: '#a2a2a2',
+  },
+  //+ボタンのスタイリング
+  memoAddButton: {
+    position: 'absolute',
+    bottom: 32,
+    right: 32,
+    width: 48,
+    height: 48,
+    backgroundColor: '#F0F',
+    borderRadius: 24,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  //+ボタンのフォントのスタイリング
+  memoAddAddButtonTitle: {
+    fontSize: 32,
+    lineHeight: 35,
+    color: '#fff',
   },
 });
