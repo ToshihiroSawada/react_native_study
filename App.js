@@ -7,7 +7,6 @@ export default function App() {
   //以下表示する為のプログラム
   return (
     <View style={styles.container}>
-
       <View style={styles.appbar}>
         <View>
         <Text style={styles.appbarTitle}>MEMOT</Text>
@@ -18,26 +17,18 @@ export default function App() {
           <Text style={styles.momeTitle}>講座のアイテム</Text>
           <Text style={styles.memoDate}>2019/12/19</Text>
         </View>
-      </View>
-      <View style={styles.memoList}>
         <View style={styles.memoListItem}>
           <Text style={styles.momeTitle}>講座のアイテム</Text>
           <Text style={styles.memoDate}>2019/12/19</Text>
         </View>
-      </View>
-      <View style={styles.memoList}>
         <View style={styles.memoListItem}>
           <Text style={styles.momeTitle}>講座のアイテム</Text>
           <Text style={styles.memoDate}>2019/12/19</Text>
         </View>
-      </View>
-      <View style={styles.memoList}>
         <View style={styles.memoListItem}>
           <Text style={styles.momeTitle}>講座のアイテム</Text>
           <Text style={styles.memoDate}>2019/12/19</Text>
         </View>
-      </View>
-      <View style={styles.memoList}>
         <View style={styles.memoListItem}>
           <Text style={styles.momeTitle}>講座のアイテム</Text>
           <Text style={styles.memoDate}>2019/12/19</Text>
@@ -69,7 +60,7 @@ const styles = StyleSheet.create({
     top: 0, //上から０
     left: 0, //左から０
     right: 0, //右から０
-    height: 80, //高さ６０
+    height: 80, //高さ８０
     backgroundColor: '#265366',
     justifyContent: 'center', //上下の位置設定（センター）
     alignItems: 'center', //左右方向の位置設定（センター）
@@ -78,10 +69,11 @@ const styles = StyleSheet.create({
       width: 0,
       height: 2,
     },
+    marginBottom: 10,
     shadowRadius: 0,
     shadowOpacity: 1,
-    elevation: 500,
-    zIndex: 10,
+    elevation: 5,
+    zIndex: 1, //表示する優先度(最前面等)を設定する
   },
   //appbarのフォントのスタイリング
   appbarTitle: {
