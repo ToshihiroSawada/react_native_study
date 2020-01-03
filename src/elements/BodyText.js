@@ -5,7 +5,7 @@ class BodyText extends React.Component {
 	render() {
 		return (
 			<View>
-				<Text style={style.text}>
+				<Text style={styles.text}>
 					{this.props.children}
 				</Text>
 			</View>
@@ -13,7 +13,7 @@ class BodyText extends React.Component {
 	}
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
 	text: {
 		color: 'blue',
 		backgroundColor: 'red',
