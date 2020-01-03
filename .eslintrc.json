@@ -16,8 +16,7 @@
 		"react/destructuring-assignment": 0,
 		"react/prop-types": 0,
 		"spaced-comment": 0,
-		"import/extensions": 0,
-		"no-unused-vars": 0
+		"import/extensions": 0
 	},
 	"parser": "babel-eslint"
 }
