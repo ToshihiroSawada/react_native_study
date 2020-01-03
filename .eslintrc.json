@@ -15,7 +15,8 @@
 		"react/jsx-indent": 0,
 		"react/destructuring-assignment": 0,
 		"react/prop-types": 0,
-		"spaced-comment": 0
+		"spaced-comment": 0,
+		"import/extensions": 0
 	},
 	"parser": "babel-eslint"
 }

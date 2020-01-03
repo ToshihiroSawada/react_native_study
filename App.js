@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 
+import MemoList from './src/components/MemoList.js';
+
 //import BodyText from './src/elements/BodyText';
 
 export default function App() {
@@ -10,28 +12,7 @@ export default function App() {
       <View style={styles.appbar}>
         <Text style={styles.appbarTitle}>MEMOT</Text>
       </View>
-      <View style={styles.memoList}>
-        <View style={styles.memoListItem}>
-          <Text style={styles.momeTitle}>講座のアイテム</Text>
-          <Text style={styles.memoDate}>2019/12/19</Text>
-        </View>
-        <View style={styles.memoListItem}>
-          <Text style={styles.momeTitle}>講座のアイテム</Text>
-          <Text style={styles.memoDate}>2019/12/19</Text>
-        </View>
-        <View style={styles.memoListItem}>
-          <Text style={styles.momeTitle}>講座のアイテム</Text>
-          <Text style={styles.memoDate}>2019/12/19</Text>
-        </View>
-        <View style={styles.memoListItem}>
-          <Text style={styles.momeTitle}>講座のアイテム</Text>
-          <Text style={styles.memoDate}>2019/12/19</Text>
-        </View>
-        <View style={styles.memoListItem}>
-          <Text style={styles.momeTitle}>講座のアイテム</Text>
-          <Text style={styles.memoDate}>2019/12/19</Text>
-        </View>
-      </View>
+      <MemoList />
       <View style={styles.memoAddButton}>
         <Text style={styles.memoAddAddButtonTitle}>
         +
@@ -73,28 +54,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 18,
   },
-  //memoListの幅を画面いっぱいにする
-  memoList: {
-    width: '100%',
-    flex: 1, //画面いっぱいにmemoListを広げるという設定
-  },
-  //memoListItemに影をつける
-  memoListItem: {
-    padding: 15,
-    backgroundColor: '#fff', //memoListItemの背景色を設定
-    borderBottomWidth: 1,
-    borderBottomColor: '#ddd',
-  },
-  //タイトル(【講座のアイテム】の部分)のスタイリング
-  memoTitle: {
-    fontSize: 18,
-    marginBottom: 4,
-  },
-  //日付のスタイリング
-  memoDate: {
-    fontSize: 12,
-    color: '#a2a2a2',
-  },
   //+ボタンのスタイリング
   memoAddButton: {
     position: 'absolute',
@@ -107,7 +66,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     shadowColor: '#000',
-    shadowOffset: { width: 0.1, height: 0.1 }, //影の幅、高さ設定
+    shadowOffset: { width: 0.1, height: 2 }, //影の幅、高さ設定
     shadowRadius: 24, //影の丸さ設定
     shadowOpacity: 1, //影の濃さ（１がMAX）
     elevation: 10, //表示する優先度(高度)を設定する
