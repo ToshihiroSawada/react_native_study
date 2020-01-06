@@ -17,8 +17,8 @@ class MemoListScreen extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    width: '100%',
+    flex: 1, //画面いっぱいに広げる設定
+    width: '100%', //幅を画面いっぱいに広げる設定
   },
 });
 

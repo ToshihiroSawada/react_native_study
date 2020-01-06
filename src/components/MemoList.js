@@ -38,8 +38,8 @@ class MemoList extends React.Component {
 const styles = StyleSheet.create({
   //memoListの幅を画面いっぱいにする
   memoList: {
-    width: '100%',
-    flex: 1, //画面いっぱいにmemoListを広げるという設定
+    flex: 1, //画面いっぱいにmemoListを広げる設定
+    width: '100%', //幅を画面いっぱいに広げる設定
   },
   //memoListItemに影をつける
   memoListItem: {
