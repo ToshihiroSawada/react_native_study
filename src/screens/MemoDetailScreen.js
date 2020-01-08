@@ -20,7 +20,7 @@ class MemoDetailScreen extends React.Component {
           </Text>
         </View>
 
-        <CircleButton style={styles.editButton}>+</CircleButton>
+        <CircleButton color="white" style={styles.editButton}>+</CircleButton>
       </View>
     );
   }
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1, //画面いっぱいに広げる設定
   },
   editButton: {
-    top: 120,
+    top: 75,
   },
 });
 

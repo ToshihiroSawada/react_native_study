@@ -3,11 +3,20 @@ import { StyleSheet, View, Text } from 'react-native';
 
 class CircleButton extends React.Component {
   render() {
-    const { style } = this.props; //他で呼び出された際に変更可能な設定にする設定
+    const { style, color } = this.props; //他で呼び出された際に変更可能な設定にする設定
+    let bgColor = '#f0f'; //backgroundColorのデフォルト値の設定
+    let textColor = '#fff'; //colorのデフォルト値の設定(テキスト用)
+
+    //colorの値が'white'だった場合スタイルを変更
+    if (color === 'white') {
+      bgColor = '#fff';
+      textColor = '#f0f';
+    }
     //以下表示する為のプログラム
+    //{ backgroundColor: bgColor }と{ color: textColor }で上記の変数をスタイルに適応
     return (
-      <View style={[styles.circleButton, style]}>
-        <Text style={styles.circleButtonTitle}>
+      <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
+        <Text style={[styles.circleButtonTitle, { color: textColor }]}>
          {this.props.children}
         </Text>
       </View>
@@ -24,7 +33,6 @@ const styles = StyleSheet.create({
     right: 32,
     width: 48,
     height: 48,
-    backgroundColor: '#F0F',
     borderRadius: 24,
     justifyContent: 'center',
     alignItems: 'center',
@@ -38,7 +46,6 @@ const styles = StyleSheet.create({
   circleButtonTitle: {
     fontSize: 32,
     lineHeight: 34,
-    color: '#fff',
   },
 });
 
