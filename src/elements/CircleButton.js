@@ -1,7 +1,23 @@
 import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 
+import { Font } from 'expo-font';
+import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
+
 class CircleButton extends React.Component {
+  state = {
+    fontLoaded: false, //fontLoadedのデフォルト値をfalseに設定
+  }
+
+  //カスタムフォントが読み込まれてからfontLoadedをtrueにする
+  async componentDidMount() { //asyncで非同期処理
+    await Font.loadAsync({  //awaitで結果が返ってくるまで一時停止
+      FontAwsome: fontAwsome,
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     const { style, color } = this.props; //他で呼び出された際に変更可能な設定にする設定
     let bgColor = '#f0f'; //backgroundColorのデフォルト値の設定
@@ -16,9 +32,13 @@ class CircleButton extends React.Component {
     //{ backgroundColor: bgColor }と{ color: textColor }で上記の変数をスタイルに適応
     return (
       <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
-        <Text style={[styles.circleButtonTitle, { color: textColor }]}>
-         {this.props.children}
-        </Text>
+        {
+          this.state.fontLoaded ? ( //fontLoadedがtrueだった場合にカスタムフォントのレンダリングを行う
+            <Text style={[styles.circleButtonTitle, { color: textColor }]}>
+              {this.props.children}
+            </Text>
+          ) : null
+        }
       </View>
     );
     //以上表示する為のプログラム
@@ -28,6 +48,7 @@ class CircleButton extends React.Component {
 const styles = StyleSheet.create({
   //+ボタンのスタイリング
   circleButton: {
+    fontFamily: 'FontAwsome',
     position: 'absolute',
     bottom: 32,
     right: 32,
@@ -44,8 +65,9 @@ const styles = StyleSheet.create({
   },
   //+ボタンのフォントのスタイリング
   circleButtonTitle: {
-    fontSize: 32,
-    lineHeight: 34,
+    fontFamily: 'FontAwsome',
+    fontSize: 24,
+    lineHeight: 24,
   },
 });
 
