@@ -4,9 +4,10 @@ import { Font } from 'expo-font';
 import { createIconSet } from '@expo/vector-icons';
 import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
 
-const CustomIcon = createIconSet({  //カスタムフォントのセットを行う
+const CustomIcon = createIconSet({ //カスタムフォントのセットを行う
   pencil: '\uf303', //pencilと指定した場合、f303のユニコードのカスタムフォントを表示
   plus: '\uf067', //plusと指定した場合、f067のユニコードのカスタムフォントを表示
+  check: '\uf00c', //checkと指定した場合、f00cのユニコードのカスタムフォントを表示
 }, 'FontAwsome');
 
 class CircleButton extends React.Component {
@@ -16,7 +17,7 @@ class CircleButton extends React.Component {
 
   //カスタムフォントが読み込まれてからfontLoadedをtrueにする
   async componentDidMount() { //asyncで非同期処理
-    await Font.loadAsync({  //awaitで結果が返ってくるまで一時停止
+    await Font.loadAsync({ //awaitで結果が返ってくるまで一時停止
       FontAwsome: fontAwsome,
     });
 
