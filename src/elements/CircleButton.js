@@ -1,8 +1,13 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-
+import { StyleSheet, View } from 'react-native';
 import { Font } from 'expo-font';
+import { createIconSet } from '@expo/vector-icons';
 import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
+
+const CustomIcon = createIconSet({  //カスタムフォントのセットを行う
+  pencil: '\uf303', //pencilと指定した場合、f303のユニコードのカスタムフォントを表示
+  plus: '\uf067', //plusと指定した場合、f067のユニコードのカスタムフォントを表示
+}, 'FontAwsome');
 
 class CircleButton extends React.Component {
   state = {
@@ -19,7 +24,7 @@ class CircleButton extends React.Component {
   }
 
   render() {
-    const { style, color } = this.props; //他で呼び出された際に変更可能な設定にする設定
+    const { name, style, color } = this.props; //他で呼び出された際に変更可能な設定にする設定
     let bgColor = '#f0f'; //backgroundColorのデフォルト値の設定
     let textColor = '#fff'; //colorのデフォルト値の設定(テキスト用)
 
@@ -34,9 +39,7 @@ class CircleButton extends React.Component {
       <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
         {
           this.state.fontLoaded ? ( //fontLoadedがtrueだった場合にカスタムフォントのレンダリングを行う
-            <Text style={[styles.circleButtonTitle, { color: textColor }]}>
-              {this.props.children}
-            </Text>
+            <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]} />
           ) : null
         }
       </View>
