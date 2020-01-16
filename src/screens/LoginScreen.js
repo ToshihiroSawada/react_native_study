@@ -11,7 +11,7 @@ class LoginScreen extends React.Component {
           <TextInput style={styles.input} value="Email Address" />
           <TextInput style={styles.input} value="Password" />
           <TouchableHighlight style={styles.button} onPress={() => {}} >
-            <Text style={styles.buttonTitle}>送信</Text>
+            <Text style={styles.buttonTitle}>ログインする</Text>
           </TouchableHighlight>
       </View>
     );
@@ -43,7 +43,9 @@ const styles = StyleSheet.create({
       height: 48,
       borderRadius: 4,
       justifyContent: 'center',
-      alignItems: 'center',
+      alignItems: 'center', //文字(送信)を中央に配置
+      width: '70%',
+      alignSelf: 'center', //ボタンの位置を中央に配置
   },
   buttonTitle: {
     color: '#fff',
