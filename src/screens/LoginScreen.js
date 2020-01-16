@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, Text, TextInput, Button } from 'react-native';
+import { StyleSheet, View, Text, TextInput, Button, TouchableHighlight } from 'react-native';
 
 class LoginScreen extends React.Component {
   render() {
@@ -10,7 +10,9 @@ class LoginScreen extends React.Component {
           </Text>
           <TextInput style={styles.input} value="Email Address" />
           <TextInput style={styles.input} value="Password" />
-          <Button style={styles.button} title="送信" onPress={() => {}} />
+          <TouchableHighlight style={styles.button} onPress={() => {}} >
+            <Text style={styles.buttonTitle}>送信</Text>
+          </TouchableHighlight>
       </View>
     );
   }
@@ -37,7 +39,15 @@ const styles = StyleSheet.create({
       padding: 8,
   },
   button: {
-      color: '#f0f',
+      backgroundColor: '#f0f',
+      height: 48,
+      borderRadius: 4,
+      justifyContent: 'center',
+      alignItems: 'center',
+  },
+  buttonTitle: {
+    color: '#fff',
+    fontSize: 18,
   },
 });
 
