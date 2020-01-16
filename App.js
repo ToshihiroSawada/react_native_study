@@ -2,14 +2,14 @@ import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
 import Appbar from './src/components/Appbar';
-import MemoEditScreen from './src/screens/MemoEditScreen';
+import LoginScreen from './src/screens/LoginScreen';
 
 export default function App() {
   //以下表示する為のプログラム
   return (
     <View style={styles.container}>
       <Appbar />
-      <MemoEditScreen />
+      <LoginScreen />
     </View>
   );
   //以上表示する為のプログラム
