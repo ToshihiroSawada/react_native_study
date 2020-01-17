@@ -1,27 +1,23 @@
-import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { createAppContainer } from 'react-navigation'; //react-navigationのcreateAppContainerをインポート
+import { createStackNavigator } from 'react-navigation-stack'; //react-navigation-stackのcreateStackNavigatorをインポート
+//画面遷移には、上記2つをインポートする必要が有る
 
-import Appbar from './src/components/Appbar';
-import SignupScreen from './src/screens/SignupScreen';
+import MemoListScreen from './src/screens/MemoListScreen';
 
-export default function App() {
-  //以下表示する為のプログラム
-  return (
-    <View style={styles.container}>
-      <Appbar />
-      <SignupScreen />
-    </View>
-  );
-  //以上表示する為のプログラム
-}
 
-//スタイリング設定(CSSの様な役割をする)
-const styles = StyleSheet.create({
-  container: {
-    flex: 1, //画面いっぱいに広げる設定
-    backgroundColor: '#fffdf6', //全体の背景色設定
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingTop: 80, //memoListItemがappbarにかからないようにする設定
+const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作成
+  screen: {
+    screen: MemoListScreen, //ホーム画面（MemoListScreen）を用意
+    navigationOptions: {
+      headerTitle: 'MEMOT', //画面上部のタイトルを'MEMOT'に変更
+      headerStyle: {
+        backgroundColor: '#225566', //バックグラウンドカラーを設定
+      },
+    },
   },
 });
+
+const App = createAppContainer(AppScreen); //AppScreenをcreateAppConteinerに入れて、コンテナ化
+
+
+export default App;
