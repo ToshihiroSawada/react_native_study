@@ -13,7 +13,7 @@ const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作�
     Home: { //Homeは何も指定しない場合のヘッダータイトルになる
       screen: MemoListScreen, //ホーム画面（MemoListScreen）を用意
     },
-    MemoDitail: {
+    MemoDetail: {
       screen: MemoDetailScreen,
     },
     MemoEdit: {
