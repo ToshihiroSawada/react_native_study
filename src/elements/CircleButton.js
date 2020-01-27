@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, TouchableHighlight } from 'react-native';
 import * as Font from 'expo-font';
 import { createIconSet } from '@expo/vector-icons';
 import fontAwsome from '../../assets/fonts/fa-solid-900.ttf';
@@ -37,25 +37,29 @@ class CircleButton extends React.Component {
     //以下表示する為のプログラム
     //{ backgroundColor: bgColor }と{ color: textColor }で上記の変数をスタイルに適応
     return (
-      <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
-        {
-          this.state.fontLoaded ? ( //fontLoadedがtrueだった場合にカスタムフォントのレンダリングを行う
-            <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]} />
-          ) : null
-        }
-      </View>
+      <TouchableHighlight style={[styles.container, style]}>
+        <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
+          {
+            this.state.fontLoaded ? ( //fontLoadedがtrueだった場合にカスタムフォントのレンダリングを行う
+              <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]} />
+            ) : null
+          }
+        </View>
+      </TouchableHighlight>
     );
     //以上表示する為のプログラム
   }
 }
 
 const styles = StyleSheet.create({
-  //+ボタンのスタイリング
-  circleButton: {
-    fontFamily: 'FontAwsome',
+  container: {
     position: 'absolute',
     bottom: 32,
     right: 32,
+  },
+  //+ボタンのスタイリング
+  circleButton: {
+    fontFamily: 'FontAwsome',
     width: 48,
     height: 48,
     borderRadius: 24,

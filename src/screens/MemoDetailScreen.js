@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     flex: 1, //画面いっぱいに広げる設定
   },
   editButton: {
-    top: 75,
+    top: 40,
   },
 });
 
