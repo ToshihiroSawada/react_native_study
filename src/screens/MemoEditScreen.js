@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, View, TextInput } from 'react-native';
+import { StyleSheet, View, TextInput  } from 'react-native';
 
 import CircleButton from '../elements/CircleButton';
 
@@ -8,7 +8,7 @@ class MemoEditScreen extends React.Component {
     return (
       <View style={styles.container}>
         <TextInput style={styles.memoEditInput} multiline value="Hi" />
-        <CircleButton name="check" />
+        <CircleButton name="check" onPress={() => { this.props.navigation.goBack(); }} />
       </View>
     );
   }

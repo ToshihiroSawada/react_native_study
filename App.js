@@ -10,6 +10,12 @@ import SignupScreen from './src/screens/SignupScreen.js';
 
 
 const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作成
+    Login: {
+      screen: LoginScreen,
+    },
+    Signup: {
+      screen: SignupScreen,
+    },
     Home: { //Homeは何も指定しない場合のヘッダータイトルになる
       screen: MemoListScreen, //ホーム画面（MemoListScreen）を用意
     },
@@ -19,15 +25,10 @@ const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作�
     MemoEdit: {
       screen: MemoEditScreen,
     },
-    Login: {
-      screen: LoginScreen,
-    },
-    Signup: {
-      screen: SignupScreen,
-    },
   }, { //画面を用意する部分の外(以下の部分)にdefaultNavigationOptionsを出すことによって、全画面共通のオプションを作成できる
   defaultNavigationOptions: {
     headerTitle: 'MEMOT', //ヘッダータイトルを'MEMOT'に変更
+    headerTintColor: '#fff', //左上に表示される矢印の色を指定
     headerStyle: {
       backgroundColor: '#225566', //バックグラウンドカラーを設定
     },
