@@ -25,7 +25,7 @@ class CircleButton extends React.Component {
   }
 
   render() {
-    const { name, style, color } = this.props; //他で呼び出された際に変更可能な設定にする設定
+    const { name, style, color, onPress } = this.props; //他で呼び出された際に変更可能な設定にする設定
     let bgColor = '#f0f'; //backgroundColorのデフォルト値の設定
     let textColor = '#fff'; //colorのデフォルト値の設定(テキスト用)
 
@@ -37,8 +37,8 @@ class CircleButton extends React.Component {
     //以下表示する為のプログラム
     //{ backgroundColor: bgColor }と{ color: textColor }で上記の変数をスタイルに適応
     return (
-      <TouchableHighlight style={[styles.container, style]}>
-        <View style={[styles.circleButton, style, { backgroundColor: bgColor }]}>
+      <TouchableHighlight style={[styles.container, style]} onPress={onPress} underlayColor="transparent">
+        <View style={[styles.circleButton, { backgroundColor: bgColor }]}>
           {
             this.state.fontLoaded ? ( //fontLoadedがtrueだった場合にカスタムフォントのレンダリングを行う
               <CustomIcon name={name} style={[styles.circleButtonTitle, { color: textColor }]} />
@@ -56,6 +56,8 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 32,
     right: 32,
+    width: 48,
+    height: 48,
   },
   //+ボタンのスタイリング
   circleButton: {
