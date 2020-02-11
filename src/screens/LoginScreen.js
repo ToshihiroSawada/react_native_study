@@ -7,9 +7,12 @@ class LoginScreen extends React.Component {
     password: '',
   }
 
-  // handleChangeText(text) {
-  //   this.setState({ email: text });
-  // }
+  //eslintを一時的に無効化する設定(すぐ下の行の警告を出さないようにする)
+  // eslint-disable-next-line
+  handleSubmit() {
+  
+  //this.props.navigation.navigate('Home');
+  }
 
   render() {
     return (
@@ -35,7 +38,7 @@ class LoginScreen extends React.Component {
             placeholder="Password"
             secureTextEntry
           />
-          <TouchableHighlight style={styles.button} onPress={() => { this.props.navigation.navigate('Home'); }} underlayColor="#f7f">
+          <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#f7f">
             <Text style={styles.buttonTitle}>ログインする</Text>
           </TouchableHighlight>
       </View>

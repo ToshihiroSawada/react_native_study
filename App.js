@@ -1,6 +1,7 @@
 import { createAppContainer } from 'react-navigation'; //react-navigationのcreateAppContainerをインポート
 import { createStackNavigator } from 'react-navigation-stack'; //react-navigation-stackのcreateStackNavigatorをインポート
 //画面遷移には、上記2つをインポートする必要が有る
+import firebase from 'firebase';
 
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen.js';
@@ -8,6 +9,19 @@ import MemoEditScreen from './src/screens/MemoEditScreen.js';
 import LoginScreen from './src/screens/LoginScreen.js';
 import SignupScreen from './src/screens/SignupScreen.js';
 
+import ENV from './env.json';
+
+//Login(firebaseの準備)
+const firebaseConfig = {
+  apiKey: ENV.FIREBASE_API_KEY,
+  authDomain: ENV.FIREBASE_AUTH_DOMAIN,
+  databaseURL: ENV.FIREBASE_DB_URL,
+  projectId: ENV.PRJ_ID,
+  storageBucket: ENV.FIREBASE_STORAGE,
+  messagingSenderId: ENV.FIREBASE_MS_SENDER_ID,
+  appId: ENV.FIREBASE_APP_ID,
+};
+firebase.initializeApp(firebaseConfig); //firebaseを初期化して準備する
 
 const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作成
     Login: {
