@@ -7,13 +7,6 @@ class LoginScreen extends React.Component {
     password: '',
   }
 
-  //eslintを一時的に無効化する設定(すぐ下の行の警告を出さないようにする)
-  // eslint-disable-next-line
-  handleSubmit() {
-  
-  //this.props.navigation.navigate('Home');
-  }
-
   render() {
     return (
       <View style={styles.container}>

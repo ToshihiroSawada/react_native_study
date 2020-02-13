@@ -24,11 +24,11 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig); //firebaseを初期化して準備する
 
 const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作成
-    Login: {
-      screen: LoginScreen,
-    },
     Signup: {
       screen: SignupScreen,
+    },
+    Login: {
+      screen: LoginScreen,
     },
     Home: { //Homeは何も指定しない場合のヘッダータイトルになる
       screen: MemoListScreen, //ホーム画面（MemoListScreen）を用意
