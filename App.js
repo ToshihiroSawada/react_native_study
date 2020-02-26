@@ -11,6 +11,9 @@ import SignupScreen from './src/screens/SignupScreen.js';
 
 import ENV from './env.json';
 
+// eslint-disable-next-line
+require("firebase/firestore");
+
 //Login(firebaseの準備)
 const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
