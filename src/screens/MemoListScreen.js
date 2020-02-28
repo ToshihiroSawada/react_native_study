@@ -7,23 +7,27 @@ import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
 
 class MemoListScreen extends React.Component {
+  //DBにアクセスしてメモを登録する
   //eslint-disable-next-line
-  handlePress() { //DBにアクセスしてメモを登録する
-    const { params } = this.props.navigation.state;
-    console.log(params);
+  handlePress() { 
+    // const { params } = this.props.navigation.state;
+    // console.log(params);
     const db = firebase.firestore();
-    // db.settings({ timestampsInSnapshots: true });
-    // const uid = '7gQkG0Z6Y5Qd3JI3CmAlTyvR6mv1';
-    // db.collection(`users/${uid}/memos`).add({
-    //   body: 'test memo',
-    //   createOn: '2017-12-12',
-    // })
-    //   .then((docRef) => {
-    //     console.log(docRef.id);
-    //   })
-    // .catch((error) => {
-    //     console.error(error);
-    // });
+    console.log('------------------------------------------');
+    //db.settings({ timestampsInSnapshots: true });
+    const uid = '7gQkG0Z6Y5Qd3JI3CmAlTyvR6mv1';
+    db.collection(`users/${uid}/memos`).add({
+      body: 'test memo',
+      createdOn: '2017-12-12',
+    })
+      .then((docRef) => {
+        console.log('success!!');
+        console.log(docRef.id);
+      })
+      .catch((error) => {
+        console.log('error!!!!!!!');
+        console.error(error);
+      });
   }
 
   render() {
