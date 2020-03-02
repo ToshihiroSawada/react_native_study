@@ -19,10 +19,11 @@ const firebaseConfig = {
   apiKey: ENV.FIREBASE_API_KEY,
   authDomain: ENV.FIREBASE_AUTH_DOMAIN,
   databaseURL: ENV.FIREBASE_DB_URL,
-  projectId: ENV.PRJ_ID,
+  projectId: ENV.FIREBASE_PRJ_ID,
   storageBucket: ENV.FIREBASE_STORAGE,
   messagingSenderId: ENV.FIREBASE_MS_SENDER_ID,
   appId: ENV.FIREBASE_APP_ID,
+  measurementId: ENV.FIREBASE_MSM_ID,
 };
 firebase.initializeApp(firebaseConfig); //firebaseを初期化して準備する
 
