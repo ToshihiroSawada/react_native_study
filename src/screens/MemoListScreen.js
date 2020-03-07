@@ -1,30 +1,15 @@
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
 
-import firebase from 'firebase';
-
 import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
 
 
 class MemoListScreen extends React.Component {
-  //DBにアクセスしてメモを登録する
-  //eslint-disable-next-line
-  handlePress() { 
-    const db = firebase.firestore();
-    const uid = 'aaaaa';
-    db.collection(`users/${uid}/memos`).add({
-      body: 'test memo',
-      createdOn: '2017-12-12',
-    })
-      .then((docRef) => {
-        console.log('success!!');
-        console.log(docRef.id);
-      })
-      .catch((error) => {
-        console.log('error!!!!!!!');
-        console.error(error);
-      });
+  //paramsとして、ユーザー情報をMemoCreateScreenへ受け渡す
+  handlePress() {
+    const { params } = this.props.navigation.state;
+    this.props.navigation.navigate('MemoCreate', { CurrentUser: params.currentUser });
   }
 
   render() {

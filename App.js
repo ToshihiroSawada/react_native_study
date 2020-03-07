@@ -8,6 +8,7 @@ import MemoDetailScreen from './src/screens/MemoDetailScreen.js';
 import MemoEditScreen from './src/screens/MemoEditScreen.js';
 import LoginScreen from './src/screens/LoginScreen.js';
 import SignupScreen from './src/screens/SignupScreen.js';
+import MemoCereateScreen from './src/screens/MemoCreateScreen';
 
 import ENV from './env.json';
 
@@ -42,6 +43,9 @@ const AppScreen = createStackNavigator({ //createStackNavigatorで画面を作�
     },
     MemoEdit: {
       screen: MemoEditScreen,
+    },
+    MemoCreate: {
+      screen: MemoCereateScreen,
     },
   }, { //画面を用意する部分の外(以下の部分)にdefaultNavigationOptionsを出すことによって、全画面共通のオプションを作成できる
   defaultNavigationOptions: {

@@ -13,7 +13,7 @@ class LoginScreen extends React.Component {
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
           //console.log('succcess!!!!!!!!!\n', user);
-          this.props.navigation.navigate('Home', { currentUser: user });
+          this.props.navigation.navigate('Home', { currentUser: user }); //currentUserを参照できるように受け渡す
         })
 
         .catch((error) => {
@@ -30,7 +30,6 @@ class LoginScreen extends React.Component {
           <TextInput
             style={styles.input}
             value={this.state.email}
-            //onChangeText={this.handleChangeText.bind(this)}
             onChangeText={(text) => { this.setState({ email: text }); }}
             autoCapitalize="none"
             autoCorrect={false}
