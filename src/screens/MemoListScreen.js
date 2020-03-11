@@ -1,21 +1,44 @@
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
 import { StyleSheet, View } from 'react-native';
+
+import firebase from 'firebase';
 
 import MemoList from '../components/MemoList';
 import CircleButton from '../elements/CircleButton';
 
 
 class MemoListScreen extends React.Component {
-  //paramsとして、ユーザー情報をMemoCreateScreenへ受け渡す
+  state = {
+    memoList: [],
+  }
+
+  componentDidMount() { //MemoListScreen表示前に実行されるコンポーネント
+    const { currentUser } = firebase.auth();
+    const db = firebase.firestore();
+    db.collection(`users/${currentUser.uid}/memos`)
+      .get()
+        .then((querySnapshot) => {
+          const memoList = [];
+          querySnapshot.forEach((doc) => {
+            memoList.push(doc.data()); //doc.dataをmemoListにpushして配列を作成する
+          });
+          this.setState({ memoList }); //memoList: memoList の省略形((グローバル変数: ローカル変数)が同一の名前の場合使用可能)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+  }
+
   handlePress() {
-    const { params } = this.props.navigation.state;
-    this.props.navigation.navigate('MemoCreate', { CurrentUser: params.currentUser });
+    this.props.navigation.navigate('MemoCreate');
   }
 
   render() {
     return (
       <View style={styles.container}>
-        <MemoList navigation={this.props.navigation} />
+        {/*this.state.memoListで取得したメモの一覧をMemoListへ受け渡す*/}
+        <MemoList memoList={this.state.memoList} navigation={this.props.navigation} />
         <CircleButton name="plus" onPress={this.handlePress.bind(this)} />
       </View>
     );

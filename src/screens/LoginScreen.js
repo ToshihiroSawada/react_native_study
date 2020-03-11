@@ -3,9 +3,9 @@ import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-nat
 import firebase from 'firebase';
 
 class LoginScreen extends React.Component {
-  state = {
-    email: '',
-    password: '',
+  state = { //テスト時に入力が面倒な場合、シングルクォートの中に記述してくと入力が不要になる
+    email: 'aaa@aaa.aa',
+    password: 'password',
   }
 
     //ログイン機能の実装
@@ -13,7 +13,7 @@ class LoginScreen extends React.Component {
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
         .then((user) => {
           //console.log('succcess!!!!!!!!!\n', user);
-          this.props.navigation.navigate('Home', { currentUser: user }); //currentUserを参照できるように受け渡す
+          this.props.navigation.navigate('Home'); //Home画面に遷移
         })
 
         .catch((error) => {
@@ -30,7 +30,7 @@ class LoginScreen extends React.Component {
           <TextInput
             style={styles.input}
             value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text }); }}
+            onChangeText={(text) => { this.setState({ email: text }); }}/*この行がないと文字を入力しても反映されない */
             autoCapitalize="none"
             autoCorrect={false}
             placeholder="Email Address"

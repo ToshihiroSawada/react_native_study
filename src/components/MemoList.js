@@ -4,6 +4,7 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 
 class MemoList extends React.Component {
   render() {
+    console.log(this.props.memoList);
     //以下表示する為のプログラム
     return (
         <View style={styles.memoList}>

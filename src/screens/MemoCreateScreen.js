@@ -12,10 +12,9 @@ class MemoCereateScreen extends React.Component {
 
     //DBにアクセスしてメモを登録する
     handlePress() {
-        const { params } = this.props.navigation.state;
-        console.log(params.CurrentUser.user.uid);
+        const { currentUser } = firebase.auth();
         const db = firebase.firestore();
-        db.collection(`users/${params.CurrentUser.user.uid/*paramsで受け取ったuidをユーザー識別で使用する*/}/memos`).add({
+        db.collection(`users/${currentUser.uid/*firebase.auth()で取得したuidをユーザー識別で使用する*/}/memos`).add({
             body: this.state.body,
             createdOn: new Date(),
         })
