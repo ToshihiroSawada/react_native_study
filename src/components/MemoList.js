@@ -5,12 +5,13 @@ import { TouchableHighlight } from 'react-native-gesture-handler';
 class MemoList extends React.Component {
   //itemは取得したメモの情報になる({ item } = dataの省略形)
   renderMemo({ item }) {
+    console.log(item);
     return (
       <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail'); }}>
         <View style={styles.memoListItem}>
           {/*受け渡されたmemoListのbody部分を格納する*/}
           <Text style={styles.momeTitle}>{item.body}</Text>
-          <Text style={styles.memoDate}>2019/12/19</Text>
+    <Text style={styles.memoDate}>2020/11/11</Text>
         </View>
       </TouchableHighlight>
     );
@@ -20,7 +21,7 @@ class MemoList extends React.Component {
     return (
         <View style={styles.memoList}>
           {/*renderItemにrenderMemoでレンダリングしたものを格納し、出力する*/}
-          <FlatList data={this.props.memoList} renderItem={this.renderMemo} />
+          <FlatList data={this.props.memoList} renderItem={this.renderMemo.bind(this)} />
         </View>
     );
   }
