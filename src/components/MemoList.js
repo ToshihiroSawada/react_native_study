@@ -2,16 +2,28 @@ import React from 'react';
 import { StyleSheet, View, Text, FlatList } from 'react-native';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 
+const dateString = (date) => {
+  const str = String(date);
+  const str2 = str.split(',')[0];
+  const seconds = str2.split('=')[1];
+  //toISOStringが使用できなかったため、タイムスタンプから計算により日付を出す
+  const ts = seconds;
+  const d = new Date(ts * 1000);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  return `${year}-${month}-${day}`;
+};
+
 class MemoList extends React.Component {
   //itemは取得したメモの情報になる({ item } = dataの省略形)
   renderMemo({ item }) {
-    console.log(item);
     return (
-      <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail'); }}>
+      <TouchableHighlight onPress={() => { this.props.navigation.navigate('MemoDetail', { memo: item }); }}>
         <View style={styles.memoListItem}>
           {/*受け渡されたmemoListのbody部分を格納する*/}
-          <Text style={styles.momeTitle}>{item.body}</Text>
-    <Text style={styles.memoDate}>2020/11/11</Text>
+          <Text style={styles.momeTitle}>{item.body.substring(0, 10)}</Text>
+    <Text style={styles.memoDate}>{dateString(item.createdOn)}</Text>
         </View>
       </TouchableHighlight>
     );

@@ -3,20 +3,45 @@ import { StyleSheet, View, Text } from 'react-native';
 
 import CircleButton from '../elements/CircleButton';
 
+
+const dateString = (date) => {
+  const str = String(date);
+  const str2 = str.split(',')[0];
+  const seconds = str2.split('=')[1];
+  //toISOStringが使用できなかったため、タイムスタンプから計算により日付を出す
+  const ts = seconds;
+  const d = new Date(ts * 1000);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  const day = d.getDate();
+  return `${year}-${month}-${day}`;
+};
+
 class MemoDetailScreen extends React.Component {
+  state = {
+    memo: {},
+  }
+
+  componentDidMount() {
+    const { params } = this.props.navigation.state; //MemoListよりmemo: itemで受け渡したデータをparamsに格納
+    this.setState({ memo: params.memo }); //params.memoをstateのmemoに格納する
+  }
+
   render() {
+    const { memo } = this.state; //this.state.memo.bodyをmemo.bodyに省略したいので記述
     return (
       <View style={styles.container}>
         <View style={styles.memoHeader}>
           <View>
-            <Text style={styles.memoHeaderTitle}>講座のアイデア</Text>
-            <Text style={styles.memoHeaderDate}>2020/01/01</Text>
+            {/*String(memo.body)をsubstringしようとしたところエラーになり、型を(typeofで)調べたが、undefinedだったのでキャストしている*/}
+            <Text style={styles.memoHeaderTitle}>{String(memo.body).substring(0, 10)}</Text>
+            <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
           </View>
         </View>
 
         <View style={styles.memoContent}>
-          <Text>
-            講座のアイデアです。
+          <Text style={styles.memoBody}>
+            {memo.body}
           </Text>
         </View>
 
@@ -54,6 +79,10 @@ const styles = StyleSheet.create({
     paddingBottom: 20, //余白下
     backgroundColor: '#fff', //メモ詳細部分の背景色
     flex: 1, //画面いっぱいに広げる設定
+  },
+  memoBody: {
+    lineHeight: 22,
+    fontSize: 15,
   },
   editButton: {
     top: 75,
