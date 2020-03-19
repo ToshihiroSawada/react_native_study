@@ -6,8 +6,8 @@ import CircleButton from '../elements/CircleButton';
 
 const dateString = (date) => {
   const str = String(date);
-  const str2 = str.split(',')[0];
-  const seconds = str2.split('=')[1];
+  const str2 = str.split(',')[0]; //タイムスタンプからsecondsの値だけを取り出す
+  const seconds = str2.split('=')[1]; //同上
   //toISOStringが使用できなかったため、タイムスタンプから計算により日付を出す
   const ts = seconds;
   const d = new Date(ts * 1000);
@@ -45,7 +45,12 @@ class MemoDetailScreen extends React.Component {
           </Text>
         </View>
 
-        <CircleButton name="pencil" color="white" style={styles.editButton} onPress={() => { this.props.navigation.navigate('MemoEdit'); }} />
+        <CircleButton 
+          name="pencil"
+          color="white"
+          style={styles.editButton}
+          onPress={() => { this.props.navigation.navigate('MemoEdit', { memo }); }}
+        />
       </View>
     );
   }
