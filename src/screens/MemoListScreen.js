@@ -17,18 +17,26 @@ class MemoListScreen extends React.Component {
     const { currentUser } = firebase.auth();
     const db = firebase.firestore();
     db.collection(`users/${currentUser.uid}/memos`)
-      .get()
-        .then((querySnapshot) => {
-          const memoList = [];
-          querySnapshot.forEach((doc) => {
-            memoList.push({ ...doc.data(), key: doc.id });
-            //doc.dataをmemoListにpushして配列を作成する(...doc.data()は、bodyとcreatedOnの省略形)
-          });
-          this.setState({ memoList }); //memoList: memoList の省略形((グローバル変数: ローカル変数)が同一の名前の場合使用可能)
-        })
-        .catch((error) => {
-          console.log(error);
+      .onSnapshot((querySnapshot) => {
+        const memoList = [];
+        querySnapshot.forEach((doc) => {
+          memoList.push({ ...doc.data(), key: doc.id });
+          //doc.dataをmemoListにpushして配列を作成する(...doc.data()は、bodyとcreatedOnの省略形)
         });
+        this.setState({ memoList }); //memoList: memoList の省略形((グローバル変数: ローカル変数)が同一の名前の場合使用可能)
+      });
+      // .get()
+      //   .then((querySnapshot) => {
+      //     const memoList = [];
+      //     querySnapshot.forEach((doc) => {
+      //       memoList.push({ ...doc.data(), key: doc.id });
+      //       //doc.dataをmemoListにpushして配列を作成する(...doc.data()は、bodyとcreatedOnの省略形)
+      //     });
+      //     this.setState({ memoList }); //memoList: memoList の省略形((グローバル変数: ローカル変数)が同一の名前の場合使用可能)
+      //   })
+      //   .catch((error) => {
+      //     console.log(error);
+      //   });
   }
 
   handlePress() {

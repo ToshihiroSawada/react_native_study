@@ -27,13 +27,18 @@ class MemoDetailScreen extends React.Component {
     this.setState({ memo: params.memo }); //params.memoをstateのmemoに格納する
   }
 
+  //MemoEditScreenから渡ってきた情報をstateに入れるメソッド
+  returnMemo(memo) {
+    this.setState({ memo });
+  }
+
   render() {
     const { memo } = this.state; //this.state.memo.bodyをmemo.bodyに省略したいので記述
     return (
       <View style={styles.container}>
         <View style={styles.memoHeader}>
           <View>
-            {/*String(memo.body)をsubstringしようとしたところエラーになり、型を(typeofで)調べたが、undefinedだったのでキャストしている*/}
+            {/*memo.bodyをsubstringしようとしたところエラーになり、型を(typeofで)調べたが、undefinedだったのでStringでキャストしている*/}
             <Text style={styles.memoHeaderTitle}>{String(memo.body).substring(0, 10)}</Text>
             <Text style={styles.memoHeaderDate}>{dateString(memo.createdOn)}</Text>
           </View>
@@ -45,11 +50,12 @@ class MemoDetailScreen extends React.Component {
           </Text>
         </View>
 
-        <CircleButton 
+        <CircleButton
           name="pencil"
           color="white"
           style={styles.editButton}
-          onPress={() => { this.props.navigation.navigate('MemoEdit', { memo }); }}
+          /*...memoでメモの情報をMemoEditScreenに渡す。this.returnMemo.bind(this)でメソッドごとMemoEditScreenに渡す */
+          onPress={() => { this.props.navigation.navigate('MemoEdit', { ...memo, returnMemo: this.returnMemo.bind(this) }); }}
         />
       </View>
     );

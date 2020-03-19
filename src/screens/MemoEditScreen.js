@@ -7,26 +7,34 @@ import CircleButton from '../elements/CircleButton';
 
 class MemoEditScreen extends React.Component {
   state = {
+    //memo: {}で一括管理すると、keyが消えてしまうため、必要なデータだけ個別管理
     body: '',
     key: '',
   }
 
   componentDidMount() {
     const { params } = this.props.navigation.state;
-    this.setState({ body: params.memo.body, key: params.memo.key });
+    this.setState({ body: params.body, key: params.key }); //paramsからbodyとkeyだけを取り出す
   }
 
   handlePress() {
     const { currentUser } = firebase.auth();
-    const newDate = firebase.firestore.Timestamp.now();
+    const newDate = firebase.firestore.Timestamp.now(); //更新用のタイムスタンプ
     const db = firebase.firestore();
     db.collection(`users/${currentUser.uid}/memos`).doc(this.state.key)
       .update({
-        body: this.state.body,
-        createdOn: newDate,
+        body: this.state.body, //firebaseのメモデータを更新
+        createdOn: newDate, //firebaseのタイムスタンプを更新
       })
       .then(() => {
-        console.log('success!');
+        const { navigation } = this.props;
+        //memoのデータをMemoDetailScreenに渡すが、MemoEditScreenにはmemoがないので、オブジェクトを作成する
+        navigation.state.params.returnMemo({
+          body: this.state.body,
+          key: this.state.key,
+          createdOn: newDate,
+        });
+        navigation.goBack(); //前の画面に戻る
       })
       .catch((error) => {
         console.log(error);
