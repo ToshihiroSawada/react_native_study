@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 class LoginScreen extends React.Component {
   state = { //テスト時に入力が面倒な場合、シングルクォートの中に記述してくと入力が不要になる
@@ -11,9 +12,14 @@ class LoginScreen extends React.Component {
     //ログイン機能の実装
     handleSubmit() {
       firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then((user) => {
-          //console.log('succcess!!!!!!!!!\n', user);
-          this.props.navigation.navigate('Home'); //Home画面に遷移
+        .then(() => {
+          const resetAction = StackActions.reset({ //ログイン完了後に画面遷移をリセットして、戻るボタンでログイン画面に戻らないようにする
+            index: 0, //actionの配列(下記)の0番目(今回は0番目のみ)に遷移する
+            actions: [
+              NavigationActions.navigate({ routeName: 'Home' }), //0番目にHome画面を設定
+            ],
+          });
+          this.props.navigation.dispatch(resetAction);
         })
 
         .catch((error) => {

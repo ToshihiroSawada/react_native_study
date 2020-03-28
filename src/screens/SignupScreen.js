@@ -12,7 +12,7 @@ class SignupScreen extends React.Component {
     //Signup(Firebaseの実装)
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       //正常終了
-      .then((user) => {
+      .then(() => {
         this.props.navigation.navigate('Home');
       })
       //以上終了(エラーケース)

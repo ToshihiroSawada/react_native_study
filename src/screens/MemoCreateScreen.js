@@ -18,9 +18,7 @@ class MemoCereateScreen extends React.Component {
             body: this.state.body,
             createdOn: new Date(),
         })
-            .then((docRef) => {
-                // console.log('success!!');
-                console.log(docRef.id);
+            .then(() => {
                 this.props.navigation.goBack();
             })
             .catch((error) => {
