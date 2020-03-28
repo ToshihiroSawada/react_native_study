@@ -21,9 +21,7 @@ class MemoCereateScreen extends React.Component {
             .then(() => {
                 this.props.navigation.goBack();
             })
-            .catch((error) => {
-                console.log('error!!!!!!!');
-                console.error(error);
+            .catch(() => {
             });
     }
 

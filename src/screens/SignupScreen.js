@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
+import { NavigationActions, StackActions } from 'react-navigation';
 
 class SignupScreen extends React.Component {
   state = {
@@ -13,11 +14,16 @@ class SignupScreen extends React.Component {
     firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
       //正常終了
       .then(() => {
-        this.props.navigation.navigate('Home');
+        const resetAction = StackActions.reset({ //ログイン完了後に画面遷移をリセットして、戻るボタンでログイン画面に戻らないようにする
+          index: 0, //actionの配列(下記)の0番目(今回は0番目のみ)に遷移する
+          actions: [
+            NavigationActions.navigate({ routeName: 'Home' }), //0番目にHome画面を設定
+          ],
+        });
+        this.props.navigation.dispatch(resetAction);
       })
-      //以上終了(エラーケース)
-      .catch((error) => {
-        console.log(error);
+      //異常終了(エラーケース)
+      .catch(() => {
       });
   }
 

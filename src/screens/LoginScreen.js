@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-native';
 import firebase from 'firebase';
 import { NavigationActions, StackActions } from 'react-navigation';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class LoginScreen extends React.Component {
   state = { //テスト時に入力が面倒な場合、シングルクォートの中に記述してくと入力が不要になる
@@ -22,9 +23,12 @@ class LoginScreen extends React.Component {
           this.props.navigation.dispatch(resetAction);
         })
 
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
         });
+    }
+
+    handlePress() {
+      this.props.navigation.navigate('Signup');
     }
 
   render() {
@@ -53,6 +57,10 @@ class LoginScreen extends React.Component {
           <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#f7f">
             <Text style={styles.buttonTitle}>ログインする</Text>
           </TouchableHighlight>
+          {/*TouchableHighlightとTouchableOpacityの違いは細かい動作だけ大きくは変わらず、ただのボタン*/}
+          <TouchableOpacity style={styles.signup} onPress={this.handlePress.bind(this)}>
+            <Text style={styles.signupText}>メンバー登録する</Text>
+          </TouchableOpacity>
       </View>
     );
   }
@@ -90,6 +98,13 @@ const styles = StyleSheet.create({
   buttonTitle: {
     color: '#fff',
     fontSize: 18,
+  },
+  signup: {
+    marginTop: 16,
+    alignSelf: 'center',
+  },
+  signupText: {
+    fontSize: 16,
   },
 });
 

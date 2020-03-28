@@ -36,8 +36,7 @@ class MemoEditScreen extends React.Component {
         });
         navigation.goBack(); //前の画面に戻る
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(() => {
       });
   }
 
