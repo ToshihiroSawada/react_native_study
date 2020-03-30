@@ -6,8 +6,8 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 class LoginScreen extends React.Component {
   state = { //テスト時に入力が面倒な場合、シングルクォートの中に記述してくと入力が不要になる
-    email: 'aaa@aaa.aa',
-    password: 'password',
+    email: '',
+    password: '',
   }
 
   //ログイン機能の実装
