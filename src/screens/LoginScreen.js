@@ -10,57 +10,58 @@ class LoginScreen extends React.Component {
     password: 'password',
   }
 
-    //ログイン機能の実装
-    handleSubmit() {
-      firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => {
-          const resetAction = StackActions.reset({ //ログイン完了後に画面遷移をリセットして、戻るボタンでログイン画面に戻らないようにする
-            index: 0, //actionの配列(下記)の0番目(今回は0番目のみ)に遷移する
-            actions: [
-              NavigationActions.navigate({ routeName: 'Home' }), //0番目にHome画面を設定
-            ],
-          });
-          this.props.navigation.dispatch(resetAction);
-        })
-
-        .catch(() => {
+  //ログイン機能の実装
+  handleSubmit() {
+    firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => {
+        const resetAction = StackActions.reset({ //ログイン完了後に画面遷移をリセットして、戻るボタンでログイン画面に戻らないようにする
+          index: 0, //actionの配列(下記)の0番目(今回は0番目のみ)に遷移する
+          actions: [
+            NavigationActions.navigate({ routeName: 'Home' }), //0番目にHome画面を設定
+          ],
         });
-    }
+        this.props.navigation.dispatch(resetAction);
+      })
+      .catch(() => {
+      });
+  }
 
-    handlePress() {
-      this.props.navigation.navigate('Signup');
-    }
+  handlePress() {
+    this.props.navigation.navigate('Signup');
+  }
 
   render() {
     return (
       <View style={styles.container}>
-          <Text style={styles.title}>
-              ログイン
-          </Text>
-          <TextInput
-            style={styles.input}
-            value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text }); }}/*この行がないと文字を入力しても反映されない */
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Email Address"
-          />
-          <TextInput
-            style={styles.input}
-            value={this.state.password}
-            onChangeText={(text) => { this.setState({ password: text }); }}
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Password"
-            secureTextEntry
-          />
-          <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#f7f">
-            <Text style={styles.buttonTitle}>ログインする</Text>
-          </TouchableHighlight>
-          {/*TouchableHighlightとTouchableOpacityの違いは細かい動作だけ大きくは変わらず、ただのボタン*/}
-          <TouchableOpacity style={styles.signup} onPress={this.handlePress.bind(this)}>
-            <Text style={styles.signupText}>メンバー登録する</Text>
-          </TouchableOpacity>
+        <Text style={styles.title}>
+          ログイン
+        </Text>
+        <TextInput
+          style={styles.input}
+          value={this.state.email}
+          onChangeText={(text) => { this.setState({ email: text }); }}/*この行がないと文字を入力しても反映されない */
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Email Address"
+          underlineColorAndroid="transparent" //AndroidのTextInputでに下線が出ないようにする設定(表示されなかったが一応入れておく)
+        />
+        <TextInput
+          style={styles.input}
+          value={this.state.password}
+          onChangeText={(text) => { this.setState({ password: text }); }}
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Password"
+          secureTextEntry
+          underlineColorAndroid="transparent" //AndroidのTextInputでに下線が出ないようにする設定(表示されなかったが一応入れておく)
+        />
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#f7f">
+          <Text style={styles.buttonTitle}>ログインする</Text>
+        </TouchableHighlight>
+        {/*TouchableHighlightとTouchableOpacityの違いは細かい動作だけ大きくは変わらず、ただのボタン*/}
+        <TouchableOpacity style={styles.signup} onPress={this.handlePress.bind(this)}>
+          <Text style={styles.signupText}>メンバー登録する</Text>
+        </TouchableOpacity>
       </View>
     );
   }
@@ -74,26 +75,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-      fontSize: 28,
-      alignSelf: 'center',
-      marginBottom: 24,
+    fontSize: 28,
+    alignSelf: 'center',
+    marginBottom: 24,
   },
   input: {
-      backgroundColor: '#eee',
-      height: 48,
-      marginBottom: 16,
-      borderWidth: 1,
-      borderColor: '#ddd',
-      padding: 8,
+    backgroundColor: '#eee',
+    height: 48,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    padding: 8,
   },
   button: {
-      backgroundColor: '#f0f',
-      height: 48,
-      borderRadius: 4,
-      justifyContent: 'center',
-      alignItems: 'center', //文字(送信)を中央に配置
-      width: '70%',
-      alignSelf: 'center', //ボタンの位置を中央に配置
+    backgroundColor: '#f0f',
+    height: 48,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center', //文字(送信)を中央に配置
+    width: '70%',
+    alignSelf: 'center', //ボタンの位置を中央に配置
   },
   buttonTitle: {
     color: '#fff',

@@ -23,7 +23,7 @@ class MemoList extends React.Component {
         <View style={styles.memoListItem}>
           {/*受け渡されたmemoListのbody部分を格納する*/}
           <Text style={styles.momeTitle}>{item.body.substring(0, 10)}</Text>
-    <Text style={styles.memoDate}>{dateString(item.createdOn)}</Text>
+          <Text style={styles.memoDate}>{dateString(item.createdOn)}</Text>
         </View>
       </TouchableHighlight>
     );
@@ -31,10 +31,10 @@ class MemoList extends React.Component {
 
   render() {
     return (
-        <View style={styles.memoList}>
-          {/*renderItemにrenderMemoでレンダリングしたものを格納し、出力する*/}
-          <FlatList data={this.props.memoList} renderItem={this.renderMemo.bind(this)} />
-        </View>
+      <View style={styles.memoList}>
+        {/*renderItemにrenderMemoでレンダリングしたものを格納し、出力する*/}
+        <FlatList data={this.props.memoList} renderItem={this.renderMemo.bind(this)} />
+      </View>
     );
   }
 }

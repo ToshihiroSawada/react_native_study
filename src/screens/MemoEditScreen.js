@@ -48,6 +48,8 @@ class MemoEditScreen extends React.Component {
           multiline
           value={this.state.body}
           onChangeText={(text) => { this.setState({ body: text }); }}
+          underlineColorAndroid="transparent" //AndroidのTextInputでに下線が出ないようにする設定(表示されなかったが一応入れておく)
+          textAlignVertical="top" //TextInputのテキストの配置を画面の一番上から配置する設定
         />
         <CircleButton name="check" onPress={this.handlePress.bind(this)} />
       </View>
@@ -61,13 +63,13 @@ const styles = StyleSheet.create({
     width: '100%',
   },
   memoEditInput: {
-      backgroundColor: '#fff',
-      flex: 1, //画面いっぱいに表示する設定
-      paddingTop: 32, //上の余白を32に設定
-      paddingLeft: 16, //左の余白を16に設定
-      paddingRight: 16, //右の余白を16に設定
-      paddingBottom: 16, //下の余白を16に設定
-      fontSize: 16,
+    backgroundColor: '#fff',
+    flex: 1, //画面いっぱいに表示する設定
+    paddingTop: 32, //上の余白を32に設定
+    paddingLeft: 16, //左の余白を16に設定
+    paddingRight: 16, //右の余白を16に設定
+    paddingBottom: 16, //下の余白を16に設定
+    fontSize: 16,
   },
 });
 

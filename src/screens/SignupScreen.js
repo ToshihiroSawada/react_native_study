@@ -30,29 +30,31 @@ class SignupScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-          <Text style={styles.title}>
-              メンバー登録
-          </Text>
-          <TextInput
-            style={styles.input}
-            value={this.state.email}
-            onChangeText={(text) => { this.setState({ email: text }); }}
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Email Address"
-          />
-          <TextInput
-            style={styles.input}
-            value={this.state.password}
-            onChangeText={(text) => { this.setState({ password: text }); }}
-            autoCapitalize="none"
-            autoCorrect={false}
-            placeholder="Password"
-            secureTextEntry
-          />
-          <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#f7f">
-            <Text style={styles.buttonTitle}>送信する</Text>
-          </TouchableHighlight>
+        <Text style={styles.title}>
+          メンバー登録
+        </Text>
+        <TextInput
+          style={styles.input}
+          value={this.state.email}
+          onChangeText={(text) => { this.setState({ email: text }); }}
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Email Address"
+          underlineColorAndroid="transparent" //AndroidのTextInputでに下線が出ないようにする設定(表示されなかったが一応入れておく)
+        />
+        <TextInput
+          style={styles.input}
+          value={this.state.password}
+          onChangeText={(text) => { this.setState({ password: text }); }}
+          autoCapitalize="none"
+          autoCorrect={false}
+          placeholder="Password"
+          secureTextEntry
+          underlineColorAndroid="transparent" //AndroidのTextInputでに下線が出ないようにする設定(表示されなかったが一応入れておく)
+        />
+        <TouchableHighlight style={styles.button} onPress={this.handleSubmit.bind(this)} underlayColor="#f7f">
+          <Text style={styles.buttonTitle}>送信する</Text>
+        </TouchableHighlight>
       </View>
     );
   }
@@ -66,26 +68,26 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   title: {
-      fontSize: 28,
-      alignSelf: 'center',
-      marginBottom: 24,
+    fontSize: 28,
+    alignSelf: 'center',
+    marginBottom: 24,
   },
   input: {
-      backgroundColor: '#eee',
-      height: 48,
-      marginBottom: 16,
-      borderWidth: 1,
-      borderColor: '#ddd',
-      padding: 8,
+    backgroundColor: '#eee',
+    height: 48,
+    marginBottom: 16,
+    borderWidth: 1,
+    borderColor: '#ddd',
+    padding: 8,
   },
   button: {
-      backgroundColor: '#f0f',
-      height: 48,
-      borderRadius: 4,
-      justifyContent: 'center',
-      alignItems: 'center', //文字(送信)を中央に配置
-      width: '70%',
-      alignSelf: 'center', //ボタンの位置を中央に配置
+    backgroundColor: '#f0f',
+    height: 48,
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center', //文字(送信)を中央に配置
+    width: '70%',
+    alignSelf: 'center', //ボタンの位置を中央に配置
   },
   buttonTitle: {
     color: '#fff',

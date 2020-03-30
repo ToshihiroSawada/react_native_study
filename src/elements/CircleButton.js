@@ -20,7 +20,6 @@ class CircleButton extends React.Component {
     await Font.loadAsync({ //awaitで結果が返ってくるまで一時停止
       FontAwsome: fontAwsome,
     });
-
     this.setState({ fontLoaded: true });
   }
 
