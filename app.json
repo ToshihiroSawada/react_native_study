@@ -1,8 +1,9 @@
 {
   "expo": {
-    "name": "MemoApp",
+    "name": "Memott",
+    "description": "Simple Memo App",
     "slug": "MemoApp",
-    "privacy": "public",
+    "privacy": "unlisted",
     "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
@@ -21,10 +22,13 @@
       "fallbackToCacheTimeout": 0
     },
     "assetBundlePatterns": [
-      "**/*"
+      "assets/*"
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android": {
+      "package": "jp.ToshihiroSawada.memot"
     }
   }
 }
