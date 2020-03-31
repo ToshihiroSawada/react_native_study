@@ -3,24 +3,44 @@ import { StyleSheet, View, Text, TextInput, TouchableHighlight } from 'react-nat
 import firebase from 'firebase';
 import { NavigationActions, StackActions } from 'react-navigation';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import * as SecureStore from 'expo-secure-store';
+
+import Loading from '../elements/Loading';
 
 class LoginScreen extends React.Component {
   state = { //テスト時に入力が面倒な場合、シングルクォートの中に記述してくと入力が不要になる
     email: '',
     password: '',
+    isLoading: true,
+  }
+
+  async componentDidMount() {
+    //awaitはthen・catchの記述を簡略化したもの
+    const email = await SecureStore.getItemAsync('email');
+    const password = await SecureStore.getItemAsync('password');
+    firebase.auth().signInWithEmailAndPassword(email, password);
+    this.navigateToHome();
+  }
+
+  //ログイン後MemoListScreenに遷移する機能を共通化したメソッド
+  navigateToHome() {
+    const resetAction = StackActions.reset({ //ログイン完了後に画面遷移をリセットして、戻るボタンでログイン画面に戻らないようにする
+      index: 0, //actionの配列(下記)の0番目(今回は0番目のみ)に遷移する
+      actions: [
+        NavigationActions.navigate({ routeName: 'Home' }), //0番目にHome画面を設定
+      ],
+    });
+    this.props.navigation.dispatch(resetAction);
   }
 
   //ログイン機能の実装
   handleSubmit() {
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
-        const resetAction = StackActions.reset({ //ログイン完了後に画面遷移をリセットして、戻るボタンでログイン画面に戻らないようにする
-          index: 0, //actionの配列(下記)の0番目(今回は0番目のみ)に遷移する
-          actions: [
-            NavigationActions.navigate({ routeName: 'Home' }), //0番目にHome画面を設定
-          ],
-        });
-        this.props.navigation.dispatch(resetAction);
+        SecureStore.setItemAsync('email', this.state.email);
+        SecureStore.setItemAsync('password', this.state.password);
+        this.setState({ isLoading: false });
+        this.navigateToHome();
       })
       .catch(() => {
       });
@@ -33,6 +53,7 @@ class LoginScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
+        <Loading text="ログイン中" isLoading={this.state.isLoading} />
         <Text style={styles.title}>
           ログイン
         </Text>
