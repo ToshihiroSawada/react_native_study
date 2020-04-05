@@ -11,15 +11,15 @@ class LoginScreen extends React.Component {
   state = { //テスト時に入力が面倒な場合、シングルクォートの中に記述してくと入力が不要になる
     email: '',
     password: '',
-    isLoading: true,
+    isLoading: false,
   }
 
   async componentDidMount() {
     //awaitはthen・catchの記述を簡略化したもの
     const email = await SecureStore.getItemAsync('email');
     const password = await SecureStore.getItemAsync('password');
-    firebase.auth().signInWithEmailAndPassword(email, password);
-    this.navigateToHome();
+    this.setState({ email });
+    this.setState({ password });
   }
 
   //ログイン後MemoListScreenに遷移する機能を共通化したメソッド
@@ -35,6 +35,7 @@ class LoginScreen extends React.Component {
 
   //ログイン機能の実装
   handleSubmit() {
+    this.setState({ isLoading: true });
     firebase.auth().signInWithEmailAndPassword(this.state.email, this.state.password)
       .then(() => {
         SecureStore.setItemAsync('email', this.state.email);
@@ -43,6 +44,7 @@ class LoginScreen extends React.Component {
         this.navigateToHome();
       })
       .catch(() => {
+        this.setState({ isLoading: false });
       });
   }
 
