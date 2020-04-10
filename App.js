@@ -1,7 +1,10 @@
 import { createAppContainer } from 'react-navigation'; //react-navigationのcreateAppContainerをインポート
 import { createStackNavigator } from 'react-navigation-stack'; //react-navigation-stackのcreateStackNavigatorをインポート
 //画面遷移には、上記2つをインポートする必要が有る
+
 import firebase from 'firebase';
+//firebaseのバージョン7.9.0以降下記のインポートを行わないと、firebaseと通信が行えなくなった
+import { decode, encode } from 'base-64';
 
 import MemoListScreen from './src/screens/MemoListScreen';
 import MemoDetailScreen from './src/screens/MemoDetailScreen.js';
@@ -11,6 +14,10 @@ import SignupScreen from './src/screens/SignupScreen.js';
 import MemoCereateScreen from './src/screens/MemoCreateScreen';
 
 import ENV from './env.json';
+
+//firebaseのバージョン7.9.0以降のatob、btoaのwarningの対策
+if (!global.btoa) { global.btoa = encode; }
+if (!global.atob) { global.atob = decode; }
 
 // eslint-disable-next-line
 require("firebase/firestore");
