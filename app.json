@@ -4,7 +4,6 @@
     "description": "Simple Memo App",
     "slug": "MemoApp",
     "privacy": "unlisted",
-    "sdkVersion": "36.0.0",
     "platforms": [
       "ios",
       "android",
